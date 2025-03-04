@@ -47,8 +47,7 @@ if st.button("Summarize"):
 
     else:
         if api_key=="samarth":
-            api_key= st.secrets["GROQ_API_KEY"] 
-            llm = ChatGroq(model=model, api_key=api_key)
+            llm = ChatGroq(model=model, api_key=st.secrets["GROQ_API_KEY"])
         else : 
             llm = ChatGroq(model=model, api_key=api_key)
         try:
