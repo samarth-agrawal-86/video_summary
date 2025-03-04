@@ -9,13 +9,14 @@ from langchain.chains.summarize import load_summarize_chain
 import validators
 
 # LLM Model
-os.environ['HF_TOKEN'] = os.getenv("HF_TOKEN")
+# os.environ['HF_TOKEN'] = os.getenv("HF_TOKEN")
 # groq_api_key = os.getenv("GROQ_API_KEY")
 # llm = ChatGroq(api_key=groq_api_key, model="gemma2-9b-it")
 
 # Langsmith tracking
-os.environ["LANGCHAIN_API_KEY"]= os.getenv("LANGCHAIN_API_KEY")
-os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGCHAIN_PROJECT")
+
+os.environ["LANGCHAIN_API_KEY"]= st.secrets["LANGCHAIN_API_KEY"]
+os.environ["LANGCHAIN_PROJECT"] = st.secrets["LANGCHAIN_PROJECT"]
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGSMITH_ENDPOINT"]="https://api.smith.langchain.com"
 
@@ -46,7 +47,7 @@ if st.button("Summarize"):
 
     else:
         if api_key=="samarth":
-            api_key=os.getenv("GROQ_API_KEY")
+            api_key= st.secrets["GROQ_API_KEY"] 
             llm = ChatGroq(model=model, api_key=api_key)
         else : 
             llm = ChatGroq(model=model, api_key=api_key)
