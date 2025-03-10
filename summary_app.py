@@ -100,7 +100,8 @@ if st.button("Summarize"):
                 chain = load_summarize_chain(llm=llm, chain_type='stuff', prompt=prompt)
                 output_summary = chain.invoke(docs)
 
-                st.success(output_summary)
+                # st.success(output_summary)
+                st.write(output_summary.get('output_text', str(output_summary)))
 
         except Exception as e:
             st.exception(f"Something is not right, {e}")
